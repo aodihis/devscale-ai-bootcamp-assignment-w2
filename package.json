@@ -22,5 +22,13 @@
     "@types/node": "^26.4.1",
     "tsx": "^4.23.13",
     "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "@anvia/core": "^1.0.9",
+    "@anvia/openai": "^1.0.9",
+    "@anvia/studio": "^1.0.14",
+    "@inquirer/prompts": "^8.7.1",
+    "dotenv": "^17.4.2",
+    "zod": "^4.5.4"
   }
 }
