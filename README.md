@@ -19,11 +19,13 @@ pnpm install
 Create a local environment file from the example and add your credentials:
 
 ```env
-OPENAI_API_KEY=your-api-key
-OPENAI_API_BASE_URL=https://gateway.devscale.id/v1
+LLM_API_KEY=your-api-key
+LLM_API_BASE_URL=api-url
+LLM_MODEL_STANDARD=deepseek-v4-flash-0731
+LLM_MODEL_ADVANCED=gpt-5.6-luna
 ```
 
-`OPENAI_API_BASE_URL` is optional when using the default OpenAI endpoint. The configured model is `gpt-5.6-luna`; model and client setup live in `src/models.ts`.
+`LLM_API_BASE_URL` configures the OpenAI-compatible gateway. `LLM_MODEL_STANDARD` is used for standard tasks, while `LLM_MODEL_ADVANCED` is used for advanced tasks. Model and client setup live in `src/models.ts`.
 
 
 ## Task 1: Article Refiner
