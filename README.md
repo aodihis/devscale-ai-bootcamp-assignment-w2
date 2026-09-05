@@ -56,6 +56,37 @@ pnpm tsx .\src\01-article-refiner\pipeline.ts
 
 Open the Studio playground at [http://localhost:4021/playground](http://localhost:4021/playground) and submit the sample JSON above.
 
+## Task 3: Ticket Triage
+
+Task 3 extracts the title, priority score, and summary from a support ticket. The score is then used to route the ticket as `critical`, `high`, `medium`, or `low` priority.
+
+### Input and Output
+
+The pipeline accepts an input object with one required property, `ticket`. The ticket should describe the customer impact, urgency, and relevant technical details so the triage agent can assign an appropriate score.
+
+```json
+{
+	"ticket": "Since 14:20 UTC, every checkout attempt in our production web app has failed with an HTTP 500 response from the payment service. Customers cannot complete purchases, and the failure affects all regions and payment methods. The issue started immediately after today's deployment. We have confirmed the problem in the logs and rolled back once, but errors are still continuing. Please investigate urgently and provide an update within 30 minutes."
+}
+```
+
+The pipeline returns the extracted ticket information and routes it according to the priority score:
+
+- `critical`: score from 8 to 10
+- `high`: score from 5 to 7
+- `medium`: score from 3 to 4
+- `low`: score from 0 to 2
+
+### Run Task 3
+
+Start the Ticket Triage pipeline:
+
+```bash
+pnpm tsx .\src\03-ticket-triage\pipeline.ts
+```
+
+Open the Studio playground at [http://localhost:4021/playground](http://localhost:4021/playground) and submit the sample JSON above.
+
 ## Task 2: Idea Review Board
 
 Task 2 evaluates a startup idea from three perspectives: CEO, market analyst, and CTO. Their reviews are generated in parallel and then merged into a final recommendation.
