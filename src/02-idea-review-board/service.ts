@@ -1,24 +1,12 @@
-import { PITCH_INSTRUCTIONS, CEO_INSTRUCTIONS, ANALYST_INSTRUCTIONS, CTO_INSTRUCTIONS, MERGE_INSTRUCTIONS } from './instructions.js'
+import { CEO_INSTRUCTIONS, ANALYST_INSTRUCTIONS, CTO_INSTRUCTIONS, MERGE_INSTRUCTIONS } from './instructions.js'
 import { generateCompletion } from "@anvia/core";
 import { getModel } from "../models.js";
 
 
 type Actor = 'CEO' | 'ANALYST' | 'CTO' ;
 
-export const generatePitch = async (idea: string) => {
-       const prompt = `Project Idea: ${idea}\n\n`;
-   
-       const response = await generateCompletion({
-           model: getModel('standard'),
-           instructions: PITCH_INSTRUCTIONS,
-           prompt: prompt
-       });
-   
-       return response.output;
-}
 
-
-export const generateReview = async (pitch: string, actor: Actor) => {
+export const generateReview = async (idea: string, actor: Actor) => {
     let instructions: string;
 
     switch (actor) {
@@ -35,7 +23,7 @@ export const generateReview = async (pitch: string, actor: Actor) => {
             throw new Error(`Unsupported review actor: ${actor}`);
     }
 
-    const prompt = `Startup Pitch:\n\n${pitch}`;
+    const prompt = `Startup Idea:\n\n${idea}`;
 
     const response = await generateCompletion({
         model: getModel('standard'),
@@ -48,7 +36,7 @@ export const generateReview = async (pitch: string, actor: Actor) => {
 
 
 export const mergeReviews = async (reviews: string) => {
-   const prompt = `Reviews:\n\n${reviews}`;
+    const prompt = `Reviews:\n\n${reviews}`;
 
    const response = await generateCompletion({
        model: getModel('advanced'),

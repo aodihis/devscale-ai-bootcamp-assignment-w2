@@ -1,7 +1,6 @@
-import { generateCompletion } from "@anvia/core";
 import z from "zod";
 import { Pipeline } from "@anvia/core/pipeline";
-import { generatePitch, generateReview, mergeReviews } from "./service.js";
+import { generateReview, mergeReviews } from "./service.js";
 import { Studio } from "@anvia/studio";
 
 const InputSchema = z.object({
@@ -12,20 +11,14 @@ const pipeline = new Pipeline({
     id: "idea-review-board",
     inputSchema: InputSchema,
 }).step({
-    id: "generate-pitch",
-    run: async (context) => {
-        const pitch = await generatePitch(context.input.idea);
-        return {pitch} ;
-    }
-}).step({
     id: "generate-reviews",
     run: async (context) => {
-        const pitch = context.input.pitch;
+        const idea = context.input.idea;
 
         const [ceoReview, analystReview, ctoReview] = await Promise.all([
-            generateReview(pitch, 'CEO'),
-            generateReview(pitch, 'ANALYST'),
-            generateReview(pitch, 'CTO'),
+            generateReview(idea, 'CEO'),
+            generateReview(idea, 'ANALYST'),
+            generateReview(idea, 'CTO'),
         ]);
 
         return { ceoReview, analystReview, ctoReview };
