@@ -1,20 +1,23 @@
 import "dotenv/config";
 import { OpenAIClient } from "@anvia/openai";
 
+
+type ModelTier = 'standard' | 'advanced';
+
 const client = new OpenAIClient({
-  apiKey: process.env.OPENAI_API_KEY || "",
-  baseUrl: process.env.OPENAI_API_BASE_URL || "",
+  apiKey: process.env.LLM_API_KEY || "",
+  baseUrl: process.env.LLM_API_BASE_URL || "",
 });
 
-// Model
-export const model = client.completionModel({
-  modelId: "gpt-5.6-luna",
-  api: "chat",
-});
 
-export function getModel(modelId: string) {
+export const getModel = (tier: ModelTier = 'standard') => {
+  const modelId =
+    tier === 'advanced'
+      ? process.env.LLM_MODEL_ADVANCED || ''
+      : process.env.LLM_MODEL_STANDARD || '';
+
   return client.completionModel({
     modelId,
-    api: "chat",
+    api: 'chat',
   });
-}
+};

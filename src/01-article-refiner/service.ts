@@ -1,7 +1,5 @@
 import { generateCompletion } from "@anvia/core";
-import { model } from "../models.js";
-import z from "zod";
-
+import { getModel } from "../models.js";
 
 const GENERATE_DRAFT_INSTRUCTIONS = `You are the Drafter, an expert content creator. 
 Your objective is to take the user's core topic and expand it into a comprehensive first draft. 
@@ -39,7 +37,7 @@ export const generateDraft = async (topic: string) => {
     const prompt = `User's Topic: ${topic}\n\n`;
 
     const response = await generateCompletion({
-        model,
+        model: getModel('advanced'),
         instructions: GENERATE_DRAFT_INSTRUCTIONS,
         prompt: prompt
     });
@@ -51,7 +49,7 @@ export const generateCritique = async (topic: string, draft: string) => {
     const prompt = `User's Topic: ${topic}\n\nDraft: ${draft}\n\n`;
 
     const response = await generateCompletion({
-        model,
+        model: getModel('advanced'),
         instructions: CRITIQUE_DRAFT_INSTRUCTIONS,
         prompt: prompt
     });
@@ -79,7 +77,7 @@ export const generateRewrite = async (
     `;
 
     const response = await generateCompletion({
-        model,
+        model: getModel('advanced'),
         instructions: REWRITE_INSTRUCTIONS,
         prompt: prompt
     });
