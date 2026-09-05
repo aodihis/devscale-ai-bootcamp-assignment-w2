@@ -8,7 +8,7 @@ const InputSchema = z.object({
     topic: z.string().min(1, "Topic is required"),
 });
 
-const generateArticle =  new Pipeline({
+const pipeline =  new Pipeline({
     id: 'generate-article',
     inputSchema: InputSchema,
 }).step({
@@ -41,4 +41,4 @@ const generateArticle =  new Pipeline({
      }
 });
 
-new Studio([generateArticle]).start();
+new Studio([pipeline]).start();

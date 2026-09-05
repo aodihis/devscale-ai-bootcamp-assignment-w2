@@ -30,27 +30,53 @@ OPENAI_API_BASE_URL=https://gateway.devscale.id/v1
 
 Task 1 builds an Article Refiner with a three-step AI pipeline. A user provides a topic, and the pipeline turns it into a polished article through drafting, editing, and rewriting.
 
-### How It Works
-
-The pipeline runs these steps in order:
-
-1. **Draft**: The Drafter expands the topic into a complete first draft with a clear narrative, logical structure, and suitable tone.
-2. **Critique**: The Critiquer acts as a senior editor. It reviews the draft for its hook, flow, clarity, concision, tone, and voice. It does not rewrite the article; instead, it creates a list of specific instructions for improvement.
-3. **Rewrite**: The Rewriter receives the topic, original draft, and editorial instructions. It applies the feedback and returns the final polished article.
-
-Each step passes its output to the next step. This separates content creation from evaluation and revision, allowing the final article to be improved based on targeted editorial feedback.
-
 ### Input and Output
 
 The agent requires a topic from the user as its input before it can generate an article.
 
 The pipeline accepts an input object with one required property:
 
-```ts
-{ topic: string }
+```json
+{
+	"topic": "How to use AI for daily life"
+}
 ```
 
 An empty topic is rejected by the input schema.
 
 The final output is the rewritten article produced by the third step. The pipeline is defined in `pipeline.ts`, while the AI prompts and completion calls are implemented in `service.ts`.
+
+### Run Task 1
+
+Start the Article Refiner pipeline:
+
+```bash
+pnpm tsx .\src\01-article-refiner\pipeline.ts
+```
+
+Open the Studio playground at [http://localhost:4021/playground](http://localhost:4021/playground) and submit the sample JSON above.
+
+## Task 2: Idea Review Board
+
+Task 2 evaluates a startup idea from three perspectives: CEO, market analyst, and CTO. Their reviews are generated in parallel and then merged into a final recommendation.
+
+### Input
+
+The pipeline accepts an input object with one required property:
+
+```json
+{
+	"idea": "A mobile app that helps busy parents plan affordable, healthy weekly meals by generating recipes from their dietary preferences, budget, and local grocery prices."
+}
+```
+
+### Run Task 2
+
+Start the Idea Review Board pipeline:
+
+```bash
+pnpm tsx .\src\02-idea-review-board\pipeline.ts
+```
+
+Open the Studio playground at [http://localhost:4021/playground](http://localhost:4021/playground) and submit the sample JSON above.
 
