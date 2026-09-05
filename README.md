@@ -56,6 +56,30 @@ pnpm tsx .\src\01-article-refiner\pipeline.ts
 
 Open the Studio playground at [http://localhost:4021/playground](http://localhost:4021/playground) and submit the sample JSON above.
 
+## Task 2: Idea Review Board
+
+Task 2 evaluates a startup idea from three perspectives: CEO, market analyst, and CTO. Their reviews are generated in parallel and then merged into a final recommendation.
+
+### Input
+
+The pipeline accepts an input object with one required property:
+
+```json
+{
+	"idea": "Build a subscription service for independent restaurants that predicts next-week ingredient demand from historical orders, reservations, weather, and local events. The service should reduce food waste and stockouts by sending daily purchasing recommendations to restaurant managers. Charge each location $99 per month, starting with restaurants that have 1 to 3 locations in major cities. The first MVP should integrate with Square and Toast, support manual CSV uploads, and provide a simple dashboard with demand forecasts, suggested order quantities, and estimated savings."
+}
+```
+
+### Run Task 2
+
+Start the Idea Review Board pipeline:
+
+```bash
+pnpm tsx .\src\02-idea-review-board\pipeline.ts
+```
+
+Open the Studio playground at [http://localhost:4021/playground](http://localhost:4021/playground) and submit the sample JSON above.
+
 ## Task 3: Ticket Triage
 
 Task 3 extracts the title, priority score, and summary from a support ticket. The score is then used to route the ticket as `critical`, `high`, `medium`, or `low` priority.
@@ -83,30 +107,6 @@ Start the Ticket Triage pipeline:
 
 ```bash
 pnpm tsx .\src\03-ticket-triage\pipeline.ts
-```
-
-Open the Studio playground at [http://localhost:4021/playground](http://localhost:4021/playground) and submit the sample JSON above.
-
-## Task 2: Idea Review Board
-
-Task 2 evaluates a startup idea from three perspectives: CEO, market analyst, and CTO. Their reviews are generated in parallel and then merged into a final recommendation.
-
-### Input
-
-The pipeline accepts an input object with one required property:
-
-```json
-{
-	"idea": "Build a subscription service for independent restaurants that predicts next-week ingredient demand from historical orders, reservations, weather, and local events. The service should reduce food waste and stockouts by sending daily purchasing recommendations to restaurant managers. Charge each location $99 per month, starting with restaurants that have 1 to 3 locations in major cities. The first MVP should integrate with Square and Toast, support manual CSV uploads, and provide a simple dashboard with demand forecasts, suggested order quantities, and estimated savings."
-}
-```
-
-### Run Task 2
-
-Start the Idea Review Board pipeline:
-
-```bash
-pnpm tsx .\src\02-idea-review-board\pipeline.ts
 ```
 
 Open the Studio playground at [http://localhost:4021/playground](http://localhost:4021/playground) and submit the sample JSON above.

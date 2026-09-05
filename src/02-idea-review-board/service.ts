@@ -1,22 +1,20 @@
 import { CEO_INSTRUCTIONS, ANALYST_INSTRUCTIONS, CTO_INSTRUCTIONS, MERGE_INSTRUCTIONS } from './instructions.js'
 import { generateCompletion } from "@anvia/core";
 import { getModel } from "../models.js";
-
-
-type Actor = 'CEO' | 'ANALYST' | 'CTO' ;
+import { Actor } from "./schema.js";
 
 
 export const generateReview = async (idea: string, actor: Actor) => {
     let instructions: string;
 
     switch (actor) {
-        case 'CEO':
+        case Actor.CEO:
             instructions = CEO_INSTRUCTIONS;
             break;
-        case 'ANALYST':
+        case Actor.ANALYST:
             instructions = ANALYST_INSTRUCTIONS;
             break;
-        case 'CTO':
+        case Actor.CTO:
             instructions = CTO_INSTRUCTIONS;
             break;
         default:
